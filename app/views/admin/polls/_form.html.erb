@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <td><%= t("name") %>:</td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <td><%= t("description") %>:</td>
+    <td><%= f.text_field :description %></td>
+  </tr>
+  <tr>
+    <td><%= t("roles") %>
+    <td>
+      <% Role.all.each do |role| -%>
+        <br /><%= check_box_tag "poll[role_ids][]", role.id, @poll.roles.include?(role) %> <%= role.name %><br />
+      <% end -%>
+    </td>
+  </tr>
+</table>

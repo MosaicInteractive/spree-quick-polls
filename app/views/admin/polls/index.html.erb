@@ -1,0 +1,25 @@
+<%= button_link_to t("new_poll"), new_object_url, :icon => 'add' %>
+
+<h1>Polls</h1>
+<table class="index">
+  <thead>
+    <th><%= t("name") %></th>
+    <th><%= t("description") %></th>
+    <th><%= t("poll_options") %></th>
+    <th><%= t("roles") %></th>
+    <th>&nbsp;</td>
+  </thead>
+  <% @polls.each do |poll| -%>
+  <tr>
+    <td><%= h poll.name %></td>
+    <td><%= h poll.description %></td>
+    <td>
+      <%= h poll.free_form %>
+    </td>
+    <td><%= poll.roles.sort_by { |r| r.id }.collect { |r| r.name }.join(', ') %></td>
+    <td class="actions">
+      <%= link_to_edit poll.id %>&nbsp;<%= link_to_delete poll.id %>
+    </td>
+  </tr>
+  <% end -%>
+</table>

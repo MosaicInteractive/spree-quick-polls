@@ -1,0 +1,8 @@
+<h1><%= t("new_poll") %></h1>
+
+<%= error_messages_for :poll %>
+
+<% form_for(:poll, :url => collection_path) do |f| -%>
+  <%= render :partial => "form", :locals => { :f => f } %>
+  <%= f.submit t("create_poll") %>
+<% end -%>

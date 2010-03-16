@@ -1,0 +1,23 @@
+<%= button_link_to t("new_poll_option"), new_admin_poll_poll_option_url, :icon => 'add' %>
+<h1><%= t("polls") %></h1>
+
+<p>Poll Name: <%= @poll.name %></p>
+<p>Poll Description: <%= @poll.description %></p>
+<p>Poll Free Form: <%= @poll.free_form %></p>
+
+<table class="index">
+  <thead>
+    <th><%= t("value") %></th>
+    <th>&nbsp;</td>
+  </thead>
+  <% @poll_options.each do |poll_option| -%>
+  <tr>
+    <td><%= h poll_option.value %></td>
+    <td class="actions">
+      <%= link_to t("edit"), edit_admin_poll_poll_option_path(@poll, poll_option) %>
+      <%= link_to t("delete"), '#' #admin_poll_poll_option_path(@poll, poll_option)
+%>
+    </td>
+  </tr>
+  <% end -%>
+</table>
