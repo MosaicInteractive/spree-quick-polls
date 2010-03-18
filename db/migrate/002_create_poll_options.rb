@@ -2,7 +2,7 @@ class CreatePollOptions < ActiveRecord::Migration
   def self.up
     create_table :poll_options do |t|
       t.string :value, :null => false, :default => ''
-      t.references :polls
+      t.references :poll
       t.timestamps
     end
   end

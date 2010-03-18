@@ -1,0 +1,6 @@
+<% if @poll -%>
+<%= @poll.description %><br />
+<% @poll.poll_options.each do |poll_option| %>
+<%= check_box_tag "user[poll_id][poll_option_id]", @poll.id %> <%= h poll_option.value %><br />
+<% end -%>
+<% end -%>

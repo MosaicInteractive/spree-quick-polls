@@ -1,0 +1,6 @@
+one:
+  poll_id: 1
+  role_id: 1
+two:
+  poll_id: 2
+  role_id: 2

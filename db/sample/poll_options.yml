@@ -1,0 +1,15 @@
+poll_option_1:
+  value: Yes
+  poll_id: 1
+poll_option_2:
+  value: No
+  poll_id: 1
+poll_option_3:
+  value: Sunny
+  poll_id: 2
+poll_option_4:
+  value: Rainy
+  poll_id: 2
+poll_option_5:
+  value: Snowy
+  poll_id: 2

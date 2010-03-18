@@ -1,0 +1,9 @@
+poll_1:
+  id: 1
+  name: spree_awesome
+  description: Is Spree Awesome?
+poll_2:
+  id: 2
+  name: weather
+  description: "What's the Weather?"
+  free_form: true
