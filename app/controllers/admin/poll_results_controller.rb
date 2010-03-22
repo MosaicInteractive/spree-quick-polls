@@ -4,9 +4,8 @@ class Admin::PollResultsController < Admin::BaseController
   end
 
   def show
-    logger.warn "steph #{params.inspect}"
-    @results = {}
     # TODO: Figure out how to optimize this
+    @results = {}
     @poll = Poll.find(params[:id])
     test = UserPollOption.all.select { |v| v.poll_option.poll_id = params[:id] }.collect { |upo| upo.user_id }.uniq
     test.each do |user_id|
