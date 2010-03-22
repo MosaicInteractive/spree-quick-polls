@@ -14,8 +14,7 @@
     <td><%= h poll.name %></td>
     <td><%= h poll.description %></td>
     <td>
-      <%= poll.poll_options.collect { |po| po.value }.join(', ') %>
-      <%= poll.free_form ? ", Free Form" : '' %>
+      <%= poll.poll_options.sort_by { |po| po.id }.collect { |po| po.value }.join(', ') %><%= poll.free_form ? ", Free Form" : '' %>
     </td>
     <td><%= poll.roles.sort_by { |r| r.id }.collect { |r| r.name }.join(', ') %></td>
     <td class="actions">

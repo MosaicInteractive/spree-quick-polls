@@ -1,10 +1,12 @@
 en-US:
-  ext_quick_poll_manage: Manage Quick Polls
+  create_poll: Create Poll
+  create_poll_option: Create Poll Option
   ext_quick_poll_desc: Quick Polls for Spree
-  polls: Quick Polls
+  ext_quick_poll_manage: Manage Quick Polls
   free_form: Allow Free Form Answer
   new_poll: New Poll
-  create_poll: Create Poll
   new_poll_option: New Poll Option
-  create_poll_option: Create Poll Option
   poll_options: Poll Options
+  poll_results: Poll Results
+  polls: Quick Polls
+  submit: Submit Vote

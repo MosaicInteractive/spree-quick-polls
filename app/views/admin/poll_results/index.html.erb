@@ -1,0 +1,17 @@
+<h1><%= t("poll_results") %></h1>
+<table width="100%">
+  <tr>
+    <th>User Id</th>
+    <th>Vote</th>
+    <th>IP Address</th>
+    <th>Voted At</th>
+  </tr>
+<% @user_poll_options.each do |upo| -%>
+  <tr>
+    <td><%= upo.user_id %></td>
+    <td><%= upo.poll_option.value %></td>
+    <td><%= upo.ip_address %></td>
+    <td><%= upo.voted_at %></td>
+  </tr>
+<% end -%>
+</table>

@@ -5,6 +5,8 @@ class CreatePollOptions < ActiveRecord::Migration
       t.references :poll
       t.timestamps
     end
+
+    # Add database constraints here on polls
   end
 
   def self.down

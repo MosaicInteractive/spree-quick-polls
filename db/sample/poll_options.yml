@@ -1,15 +1,20 @@
 poll_option_1:
-  value: Yes
+  id: 1
+  value: "true"
   poll_id: 1
 poll_option_2:
-  value: No
+  id: 2
+  value: "false"
   poll_id: 1
 poll_option_3:
+  id: 3
   value: Sunny
   poll_id: 2
 poll_option_4:
+  id: 4
   value: Rainy
   poll_id: 2
 poll_option_5:
+  id: 5
   value: Snowy
   poll_id: 2

@@ -5,6 +5,8 @@ class CreatePollsRoles < ActiveRecord::Migration
       t.references :role
       t.timestamps
     end
+
+    # Add database constraints here on polls and roles
   end
 
   def self.down
