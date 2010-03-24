@@ -1,13 +1,14 @@
 class Admin::PollResultsController < Admin::BaseController
   def index
-    @user_poll_options = UserPollOption.all
+    @votes = Vote.all
+    @free_form_votes = FreeFormVote.all 
   end
 
   def show
     # TODO: Figure out how to optimize this
     @results = {}
     @poll = Poll.find(params[:id])
-    test = UserPollOption.all.select { |v| v.poll_option.poll_id = params[:id] }.collect { |upo| upo.user_id }.uniq
+    test = Vote.all.select { |v| v.poll_option.poll_id = params[:id] }.collect { |upo| upo.user_id }.uniq
     test.each do |user_id|
       user_vote = User.find(user_id).get_user_vote(@poll.id)
       @results[user_vote.value] ||= 0

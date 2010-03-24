@@ -1,9 +1,9 @@
-class CreateUserPollOptions < ActiveRecord::Migration
+class CreateVotes < ActiveRecord::Migration
   def self.up
-    create_table :user_poll_options, :id => false do |t|
+    create_table :votes, :id => false do |t|
       t.references :user
       t.references :poll_option
-      t.string     :ip_address
+      t.string     :ip_address, :null => false, :default => ''
       t.datetime   :voted_at
     end
 
@@ -11,6 +11,6 @@ class CreateUserPollOptions < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :users_polls
+    drop_table :votes
   end
 end

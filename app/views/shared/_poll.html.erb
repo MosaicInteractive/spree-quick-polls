@@ -1,8 +1,13 @@
 <% if @poll -%>
-<% form_for @user_poll_option, :url => root_url do |upo| -%>
+<% form_for @vote, :url => root_url do |upo| -%>
 <%= @poll.description %><br />
 <% @poll.poll_options.sort_by { |po| po.id }.each do |poll_option| %>
-<%= radio_button "user_poll_option", "poll_option_id", poll_option.id, @current_user_vote && @current_user_vote.id == poll_option.id ? { 'checked' => 'checked'} : {} %> <%= poll_option.value %><br />
+<input type="radio" id="vote_poll_option_id_<%= poll_option.value %>" name="vote[poll_option_id]" value="<%= poll_option.id %>" <%= 'checked="checked"' if @current_user_vote && @current_user_vote.id == poll_option.id %> />
+<%= poll_option.value %><br />
+<% end -%>
+<% if @poll.free_form -%>
+<input type="radio" id="vote_poll_option_id_free_form" name="vote[poll_option_id]" value="free_form" />
+<input type="text" id="free_form_value" name="free_form_value" /><br />
 <% end -%>
 <%= submit_tag t("submit") %>
 <% end -%>

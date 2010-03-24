@@ -7,13 +7,16 @@ class QuickPollsExtension < Spree::Extension
     Role.class_eval do
       has_and_belongs_to_many :polls
     end
+
+    # TODO: Move this out of extensions file to module
     User.class_eval do
       has_and_belongs_to_many :polls
-      has_many :user_poll_options
+      has_many :votes
 
       def get_user_vote(poll_id)
-        return if self.user_poll_options.empty?
-        current_votes = self.user_poll_options.select { |v| v.poll_option.poll_id == poll_id }
+        # add logic to retrieve user free form answer
+        return if self.votes.empty?
+        current_votes = self.votes.select { |v| v.poll_option && v.poll_option.poll_id == poll_id }
         return if current_votes.empty?
         current_votes.sort_by { |v| v.voted_at }.last.poll_option
       end

@@ -1,15 +1,26 @@
 <h1><%= t("poll_results") %></h1>
 <table width="100%">
   <tr>
+    <th>Poll Id</th>
     <th>User Id</th>
     <th>Vote</th>
     <th>IP Address</th>
     <th>Voted At</th>
   </tr>
-<% @user_poll_options.each do |upo| -%>
+<% @votes.each do |upo| -%>
   <tr>
+    <td><%= upo.poll_option.poll_id %></td>
     <td><%= upo.user_id %></td>
     <td><%= upo.poll_option.value %></td>
+    <td><%= upo.ip_address %></td>
+    <td><%= upo.voted_at %></td>
+  </tr>
+<% end -%>
+<% @free_form_votes.each do |upo| -%>
+  <tr>
+    <td><%= upo.poll_id %></td>
+    <td><%= upo.user_id %></td>
+    <td><%= upo.value %></td>
     <td><%= upo.ip_address %></td>
     <td><%= upo.voted_at %></td>
   </tr>
