@@ -1,14 +1,18 @@
 <% if @poll -%>
 <% form_for @vote, :url => root_url do |upo| -%>
-<%= @poll.description %><br />
+<table>
+<tr><th colspan="2"><%= @poll.description %></th></tr>
 <% @poll.poll_options.sort_by { |po| po.id }.each do |poll_option| %>
-<input type="radio" id="vote_poll_option_id_<%= poll_option.value %>" name="vote[poll_option_id]" value="<%= poll_option.id %>" <%= 'checked="checked"' if @current_user_vote && @current_user_vote.id == poll_option.id %> />
-<%= poll_option.value %><br />
+<tr>
+<td><%= radio_button "vote", "poll_option_id", poll_option.id, @current_user_vote && @current_user_vote.poll_option.id == poll_option.id ? { 'checked' => 'checked'} : {} %></td>
+<% if poll_option.value == 'free_form' -%>
+<td><input type="text" id="free_form_value" name="free_form_value" style="width:100px;" value="<%= @current_user_vote && @current_user_vote.free_form_vote ? @current_user_vote.free_form_vote.value : '' %>" /></td>
+<% else -%>
+<td><%= poll_option.value %></td>
 <% end -%>
-<% if @poll.free_form -%>
-<input type="radio" id="vote_poll_option_id_free_form" name="vote[poll_option_id]" value="free_form" />
-<input type="text" id="free_form_value" name="free_form_value" /><br />
+</tr>
 <% end -%>
+</table>
 <%= submit_tag t("submit") %>
 <% end -%>
 <% end -%>

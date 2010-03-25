@@ -1,12 +1,11 @@
 class CreateFreeFormVotes < ActiveRecord::Migration
   def self.up
     create_table :free_form_votes do |t|
-      t.references :user
-      t.references :poll
+      t.references :vote
       t.string     :value, :null => false, :default => ''
-      t.string     :ip_address, :null => false, :default => ''
-      t.datetime   :voted_at
     end
+
+    # Add database specific foreign key references to votes table here
   end
 
   def self.down

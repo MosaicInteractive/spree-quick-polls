@@ -19,15 +19,14 @@ module Spree::QuickPolls::BaseControllerExtends
 
   def record_vote
     if params[:vote]
-      if params[:vote][:poll_option_id] == 'free_form'
-        @poll = get_current_poll
-        @vote = FreeFormVote.new({ :poll_id => @poll.id, :value => params[:free_form_value] }) if @poll 
+      @vote = Vote.new({ :poll_option_id => params[:vote][:poll_option_id], :user_id => current_user.id, :ip_address => request.remote_ip, :voted_at => Time.now })
+      if @vote.save
+        if @vote.poll_option.value == 'free_form'
+          FreeFormVote.create({ :vote_id => @vote.id, :value => params[:free_form_value] })
+        end
       else
-        @vote = Vote.new({ :poll_option_id => params[:vote][:poll_option_id] })
+        # TODO Add logging for failed vote
       end
-      @vote.update_attributes({ :user_id => current_user.id, :ip_address => request.remote_ip, :voted_at => Time.now })
-      # TODO: Add error checking logic here to verify poll_option_id is valid
-      @vote.save
     end
   end
 end

@@ -18,3 +18,7 @@ poll_option_5:
   id: 5
   value: Snowy
   poll_id: 2
+poll_option_6:
+  id: 6
+  value: free_form
+  poll_id: 2

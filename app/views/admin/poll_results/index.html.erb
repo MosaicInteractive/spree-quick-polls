@@ -11,16 +11,7 @@
   <tr>
     <td><%= upo.poll_option.poll_id %></td>
     <td><%= upo.user_id %></td>
-    <td><%= upo.poll_option.value %></td>
-    <td><%= upo.ip_address %></td>
-    <td><%= upo.voted_at %></td>
-  </tr>
-<% end -%>
-<% @free_form_votes.each do |upo| -%>
-  <tr>
-    <td><%= upo.poll_id %></td>
-    <td><%= upo.user_id %></td>
-    <td><%= upo.value %></td>
+    <td><%= upo.poll_option.value == 'free_form' ? upo.free_form_vote.value : upo.poll_option.value %></td>
     <td><%= upo.ip_address %></td>
     <td><%= upo.voted_at %></td>
   </tr>

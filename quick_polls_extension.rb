@@ -14,11 +14,10 @@ class QuickPollsExtension < Spree::Extension
       has_many :votes
 
       def get_user_vote(poll_id)
-        # add logic to retrieve user free form answer
         return if self.votes.empty?
         current_votes = self.votes.select { |v| v.poll_option && v.poll_option.poll_id == poll_id }
         return if current_votes.empty?
-        current_votes.sort_by { |v| v.voted_at }.last.poll_option
+        current_votes.sort_by { |v| v.voted_at }.last
       end
     end
 

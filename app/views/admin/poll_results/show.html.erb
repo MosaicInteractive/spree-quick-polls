@@ -1,3 +1,8 @@
-<%= debug(@results) %>
+<table>
+<tr><th>Value</th><th>Count</th></tr>
+<% @results.each do |key, value| -%>
+<tr><td><%= key %></td><td><%= value %></td></tr>
+<% end -%>
+</table>
 
 <img src="<%= @chart_url %>" alt="Data" />

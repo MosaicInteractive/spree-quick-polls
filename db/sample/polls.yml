@@ -6,4 +6,3 @@ poll_2:
   id: 2
   name: weather
   description: "What's the Weather?"
-  free_form: true

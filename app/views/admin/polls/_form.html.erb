@@ -8,11 +8,15 @@
     <td><%= f.text_field :description %></td>
   </tr>
   <tr>
-    <td><%= t("roles") %>
+    <td><%= t("roles") %></td>
     <td>
       <% Role.all.each do |role| -%>
         <br /><%= check_box_tag "poll[role_ids][]", role.id, @poll.roles.include?(role) %> <%= role.name %><br />
       <% end -%>
     </td>
+  </tr>
+  <tr>
+    <td>Free Form?</td>
+    <td><%= check_box_tag "poll_free_form", '', @free_form %></td>
   </tr>
 </table>
