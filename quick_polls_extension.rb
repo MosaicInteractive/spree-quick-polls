@@ -10,7 +10,6 @@ class QuickPollsExtension < Spree::Extension
 
     # TODO: Move this out of extensions file to module
     User.class_eval do
-      has_and_belongs_to_many :polls
       has_many :votes
 
       def get_user_vote(poll_id)
