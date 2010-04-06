@@ -14,7 +14,12 @@
     <td><%= h poll.name %></td>
     <td><%= h poll.description %></td>
     <td>
-      <%= poll.poll_options.sort_by { |po| po.id }.collect { |po| po.value }.join(', ') %>
+      <% poll.poll_options.sort_by { |po| po.id }.each do |po| -%>
+        <%= link_to image_tag("admin/icons/edit.png"), edit_admin_poll_poll_option_path(poll, po) %>
+        <%= link_to image_tag("admin/icons/delete.png"), admin_poll_poll_option_path(poll, po), :method => :delete %>&nbsp;&nbsp;
+        <%= po.value %><br />
+      <% end -%>
+      <%= link_to image_tag("admin/icons/add.png") + ' New', new_admin_poll_poll_option_path(poll) %>
     </td>
     <td><%= poll.roles.sort_by { |r| r.id }.collect { |r| r.name }.join(', ') %></td>
     <td class="actions">

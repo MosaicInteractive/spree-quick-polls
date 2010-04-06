@@ -8,10 +8,12 @@ class Admin::PollOptionsController < Admin::BaseController
   end
 
   update.response do |format|
-    format.html { redirect_to admin_poll_poll_options_path }
+    format.html { redirect_to admin_polls_path }
   end
-
   create.response do |format|
-    format.html { redirect_to admin_poll_poll_options_path }
+    format.html { redirect_to admin_polls_path }
+  end
+  destroy.response do |format|
+    format.html { redirect_to admin_polls_path }
   end
 end
