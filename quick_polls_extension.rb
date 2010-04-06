@@ -20,7 +20,6 @@ class QuickPollsExtension < Spree::Extension
       end
     end
 
-    Admin::ConfigurationsController.send(:include, Spree::QuickPolls::AdminConfigurationsControllerExtends)
     Spree::BaseController.send(:include, Spree::QuickPolls::BaseControllerExtends)
   end
 end
