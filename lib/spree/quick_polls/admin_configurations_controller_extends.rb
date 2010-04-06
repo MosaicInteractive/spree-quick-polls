@@ -1,6 +1,6 @@
 module Spree::QuickPolls::AdminConfigurationsControllerExtends
   def self.included(controller)
-    controller.prepend_before_filter :add_quick_poll_link, :only => :index
+    controller.append_before_filter :add_quick_poll_link, :only => :index
   end
   def add_quick_poll_link
     @extension_links << {
