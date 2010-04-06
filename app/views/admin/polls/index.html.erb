@@ -10,7 +10,7 @@
     <th>&nbsp;</td>
   </thead>
   <% @polls.each do |poll| -%>
-  <tr>
+  <tr id="<%= dom_id poll %>">
     <td><%= h poll.name %></td>
     <td><%= h poll.description %></td>
     <td>
@@ -18,7 +18,7 @@
     </td>
     <td><%= poll.roles.sort_by { |r| r.id }.collect { |r| r.name }.join(', ') %></td>
     <td class="actions">
-      <%= link_to_edit poll.id %>&nbsp;<%= link_to_delete poll.id %>
+      <%= link_to_edit poll %>&nbsp;<%= link_to_delete poll %>
     </td>
   </tr>
   <% end -%>
