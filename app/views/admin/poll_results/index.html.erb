@@ -1,19 +1,34 @@
 <h1><%= t("poll_results") %></h1>
 <table width="100%">
   <tr>
-    <th>Poll Id</th>
+    <th>Poll</th>
     <th>User Id</th>
     <th>Vote</th>
     <th>IP Address</th>
     <th>Voted At</th>
   </tr>
-<% @votes.each do |upo| -%>
+<% @votes.each do |vote| -%>
   <tr>
-    <td><%= link_to upo.poll_option.poll_id.to_s, '/admin/poll_results/show/' + upo.poll_option.poll_id.to_s %></td>
-    <td><%= upo.user_id %></td>
-    <td><%= upo.poll_option.value == 'free_form' ? upo.free_form_vote.value : upo.poll_option.value %></td>
-    <td><%= upo.ip_address %></td>
-    <td><%= upo.voted_at %></td>
+    <td>
+      <% if vote.poll_option && vote.poll_option.poll -%>
+        <%= link_to vote.poll_option.poll.name, '/admin/poll_results/show/' + vote.poll_option.poll_id.to_s, { :title => 'View Poll Results' } %>
+      <% else -%>
+        *
+      <% end -%>
+    </td>
+    <td><%= vote.user_id %></td>
+    <td>
+      <% if vote.poll_option -%>
+        <%= vote.poll_option.value == 'free_form' ? vote.free_form_vote.value : vote.poll_option.value %>
+      <% else -%>
+        **
+      <% end -%>
+    </td>
+    <td><%= vote.ip_address %></td>
+    <td><%= vote.voted_at %></td>
   </tr>
 <% end -%>
 </table>
+
+<p>*Poll has been deleted.</p>
+<p>**Poll option has been deleted.</p>

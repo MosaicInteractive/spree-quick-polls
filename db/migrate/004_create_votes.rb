@@ -7,7 +7,7 @@ class CreateVotes < ActiveRecord::Migration
       t.datetime   :voted_at
     end
 
-    #Add database specific foreign key constraints if necessary here on poll options and users
+    #Add database constraints if necessary here on poll options and users
   end
 
   def self.down

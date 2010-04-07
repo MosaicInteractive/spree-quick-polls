@@ -2,11 +2,11 @@
 <% form_for @vote, :url => root_url do |upo| -%>
 <table>
 <tr><th colspan="2"><%= @poll.description %></th></tr>
-<% @poll.poll_options.sort_by { |po| po.id }.each do |poll_option| %>
+<% @poll.sorted_poll_options.each do |poll_option| %>
 <tr>
 <td><%= radio_button "vote", "poll_option_id", poll_option.id, @current_user_vote && @current_user_vote.poll_option.id == poll_option.id ? { 'checked' => 'checked'} : {} %></td>
 <% if poll_option.value == 'free_form' -%>
-<td><input type="text" id="free_form_value" name="free_form_value" style="width:100px;" value="<%= @current_user_vote && @current_user_vote.free_form_vote ? @current_user_vote.free_form_vote.value : '' %>" /></td>
+<td><input onclick="jQuery('input#vote_poll_option_id_<%= poll_option.id %>').attr('checked', true);" type="text" id="free_form_value" name="free_form_value" style="width:100px;" value="<%= @current_user_vote && @current_user_vote.free_form_vote ? @current_user_vote.free_form_vote.value : '' %>" /></td>
 <% else -%>
 <td><%= poll_option.value %></td>
 <% end -%>

@@ -1,10 +1,10 @@
 poll_option_1:
   id: 1
-  value: "true"
+  value: fo sho
   poll_id: 1
 poll_option_2:
   id: 2
-  value: "false"
+  value: meh
   poll_id: 1
 poll_option_3:
   id: 3

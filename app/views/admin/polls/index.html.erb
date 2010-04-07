@@ -7,17 +7,20 @@
     <th><%= t("description") %></th>
     <th><%= t("poll_options") %></th>
     <th><%= t("roles") %></th>
-    <th>&nbsp;</td>
   </thead>
   <% @polls.each do |poll| -%>
   <tr id="<%= dom_id poll %>">
     <td>
-      <%= h poll.name %><br />
-      <%= link_to "Results", '/admin/poll-results/show/' + poll.id.to_s %>
+      <%= link_to image_tag("admin/icons/edit.png"), edit_admin_poll_path(poll) %>
+      <%= link_to image_tag("admin/icons/delete.png"), admin_poll_path(poll), :method => :delete %>
+      <%= link_to poll.name, '/admin/poll_results/show/' + poll.id.to_s, { :title => 'View Poll Results' } %>
     </td>
     <td><%= h poll.description %></td>
     <td>
-      <% poll.poll_options.sort_by { |po| po.id }.each do |po| -%>
+      <% form_for(poll, :url => admin_poll_path(poll), :html => { :method => :put }) do |f| -%>
+      Free Form? <%= check_box_tag 'poll_free_form', '', poll.has_free_form?, :onclick => "jQuery($(this).parent().submit());" %>
+      <% end -%>
+      <% poll.poll_options.select { |po| po.value != 'free_form' }.sort_by { |po| po.id }.each do |po| -%>
         <%= link_to image_tag("admin/icons/edit.png"), edit_admin_poll_poll_option_path(poll, po) %>
         <%= link_to image_tag("admin/icons/delete.png"), admin_poll_poll_option_path(poll, po), :method => :delete %>&nbsp;&nbsp;
         <%= po.value %><br />
@@ -25,9 +28,6 @@
       <%= link_to image_tag("admin/icons/add.png") + ' New', new_admin_poll_poll_option_path(poll) %>
     </td>
     <td><%= poll.roles.sort_by { |r| r.id }.collect { |r| r.name }.join(', ') %></td>
-    <td class="actions">
-      <%= link_to_edit poll %>&nbsp;<%= link_to_delete poll %><br />
-    </td>
   </tr>
   <% end -%>
 </table>

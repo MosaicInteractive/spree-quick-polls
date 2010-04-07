@@ -4,14 +4,13 @@ class Admin::PollResultsController < Admin::BaseController
   end
 
   def show
-    @results = {}
+    #@results = {}
     @poll = Poll.find(params[:id])
-    # TODO: Figure out how to optimize this
-    uniq_users = @poll.poll_options.collect { |po| po.votes }.flatten.collect { |v| v.user_id }.uniq
-    @poll.poll_options.each { |po| @results[po.value] ||= 0 }
-    uniq_users.each do |user_id|
-      user_vote = User.find(user_id).get_user_vote(@poll.id)
-      @results[user_vote.poll_option.value] += 1
+
+    @results = @poll.poll_options.inject({}) { |hash, po| hash[po.value] = 0; hash }
+    # TODO: Optimize this?
+    @poll.poll_options.collect { |po| po.votes }.flatten.collect { |v| v.user }.uniq.each do |user|
+      @results[user.get_user_vote(@poll.id).poll_option.value] += 1
     end
 
     mod_results = @results.clone.delete_if { |k, v| v == 0 }
