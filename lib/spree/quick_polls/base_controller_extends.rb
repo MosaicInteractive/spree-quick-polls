@@ -1,7 +1,6 @@
 module Spree::QuickPolls::BaseControllerExtends
   def self.included(controller)
-    controller.append_before_filter :define_poll
-    controller.append_before_filter :record_vote
+    controller.append_before_filter :record_vote, :define_poll
   end
 
   def define_poll

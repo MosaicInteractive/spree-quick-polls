@@ -9,7 +9,7 @@
   </tr>
 <% @votes.each do |upo| -%>
   <tr>
-    <td><%= upo.poll_option.poll_id %></td>
+    <td><%= link_to upo.poll_option.poll_id.to_s, '/admin/poll_results/show/' + upo.poll_option.poll_id.to_s %></td>
     <td><%= upo.user_id %></td>
     <td><%= upo.poll_option.value == 'free_form' ? upo.free_form_vote.value : upo.poll_option.value %></td>
     <td><%= upo.ip_address %></td>

@@ -11,7 +11,10 @@
   </thead>
   <% @polls.each do |poll| -%>
   <tr id="<%= dom_id poll %>">
-    <td><%= h poll.name %></td>
+    <td>
+      <%= h poll.name %><br />
+      <%= link_to "Results", '/admin/poll-results/show/' + poll.id.to_s %>
+    </td>
     <td><%= h poll.description %></td>
     <td>
       <% poll.poll_options.sort_by { |po| po.id }.each do |po| -%>
@@ -23,7 +26,7 @@
     </td>
     <td><%= poll.roles.sort_by { |r| r.id }.collect { |r| r.name }.join(', ') %></td>
     <td class="actions">
-      <%= link_to_edit poll %>&nbsp;<%= link_to_delete poll %>
+      <%= link_to_edit poll %>&nbsp;<%= link_to_delete poll %><br />
     </td>
   </tr>
   <% end -%>
