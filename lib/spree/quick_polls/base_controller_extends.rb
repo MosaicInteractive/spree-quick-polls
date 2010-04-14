@@ -10,8 +10,7 @@ module Spree::QuickPolls::BaseControllerExtends
   end
 
   def get_current_poll
-    # TODO: Figure out why logic below is losing created_at when grouping 
-    #current_user.roles.collect { |r| r.polls }.flatten.sort_by { |p| p.id }.first if current_user && current_user.roles
+    return if current_user.nil?
     Poll.find(:all, :order => "created_at DESC").select { |p| !(p.roles & current_user.roles).empty? }.first
   end
 
