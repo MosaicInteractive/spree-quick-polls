@@ -11,7 +11,10 @@ module Spree::QuickPolls::BaseControllerExtends
 
   def get_current_poll
     return if current_user.nil?
-    Poll.find(:all, :order => "created_at DESC").select { |p| !(p.roles & current_user.roles).empty? }.first
+    Poll.find(:all, :order => "created_at DESC").select { |p|
+      ( !current_user and p.roles.find_by_name('user') ) or
+      !(p.roles & current_user.roles).empty? 
+    }.first
   end
 
   def record_vote
